@@ -1,0 +1,5 @@
+host: 'ds035623.mongolab.com'
+port: 35623
+database: 'challenge'
+user: karl
+password: k@rl
