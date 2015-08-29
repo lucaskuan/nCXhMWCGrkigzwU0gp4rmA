@@ -13,8 +13,9 @@ module.exports = function() {
    */
   CurrencyHandler.prototype.work = function(payload, cb) {
     // console.log('working');
-    // console.log(payload);
+    console.log(payload);
     // var keys = Object.keys(payload);
+    
     cb('release', 10);
   }
   
