@@ -2,4 +2,6 @@ var mongoose = require('mongoose');
 
 var jobSchema = new mongoose.Schema({}, {strict: false});
 
-var Job = module.exports = mongoose.model('Job', jobSchema);
+var Job = mongoose.model('Job', jobSchema);
+
+module.exports = Job;
