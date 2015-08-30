@@ -15,8 +15,8 @@
 		type: 'currency',
 		payload: {
 			uuid: uuid.v1(),
-			from: 'HKD',
-			to: 'USD',
+			from: 'CNY',
+			to: 'HKD',
 		},
 	};
 

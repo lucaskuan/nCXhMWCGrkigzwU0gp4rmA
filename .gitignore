@@ -6,6 +6,8 @@
 # Add your custom excludes below
 # ------------------------------------------------------------------------------
 
+config/beanstalkd.yml
+config/database.yml
 
 # =============== log ignore
 node_modules

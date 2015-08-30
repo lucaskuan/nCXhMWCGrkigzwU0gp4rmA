@@ -1,0 +1,5 @@
+host: 'localhost'
+port: 35623
+database: 'challenge'
+user: ''
+password: ''
