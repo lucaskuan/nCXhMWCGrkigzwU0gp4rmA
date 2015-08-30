@@ -7,13 +7,6 @@ var restlerP = require('./lib/restler_p.js');
 
 var worker = require('./lib/worker.js');
 
-function prepareConnections() {
-	mongoose.connect('mongodb://' + dbConfig.host + ':' + dbConfig.port + '/' + dbConfig.database, {
-		user: dbConfig.user,
-		pass: dbConfig.password
-	});
-}
-
 // Setup db connection
 var dbConfig = yaml.load(fs.readFileSync('./config/database.yml', 'utf8'));
 mongoose.connect('mongodb://' + dbConfig.host + ':' + dbConfig.port + '/' + dbConfig.database, {
@@ -21,7 +14,6 @@ mongoose.connect('mongodb://' + dbConfig.host + ':' + dbConfig.port + '/' + dbCo
 	pass: dbConfig.password
 });
 mongoose.connection.on('open', function(cb) {
-	console.log('connected mongo');
 	var consumerWorker = new worker();
 	consumerWorker.start();
 });

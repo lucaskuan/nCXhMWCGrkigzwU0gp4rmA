@@ -3,9 +3,13 @@
 
 	var fivebeans = require('fivebeans');
 	var uuid = require('node-uuid');
-	var host = 'localhost';
-	var port = 11300;
-	var tube = 'testtube';
+	var fs = require('fs');
+	var yaml = require('js-yaml');
+	var bsConfig = yaml.load(fs.readFileSync('./config/beanstalkd.yml', 'utf8'));
+	
+	var host = bsConfig.beanstalkd.host;
+	var port = bsConfig.beanstalkd.port;
+	var tube = bsConfig.watch[0];
 
 	var job = {
 		type: 'currency',

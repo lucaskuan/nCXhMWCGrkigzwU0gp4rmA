@@ -1,3 +1,8 @@
+/**
+ * Currency model
+ * @author lucaskuan
+ */
+
 var mongoose = require('mongoose');
 
 var currencySchema = new mongoose.Schema({

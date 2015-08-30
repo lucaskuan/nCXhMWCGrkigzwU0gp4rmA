@@ -23,20 +23,15 @@ module.exports = function() {
 	* @param {function} cb - Job process status callback to fivebeans
 	*/
 	CurrencyHandler.prototype.work = function(payload, cb) {
-		console.log(payload);
 		var updateOption = {};
-		var delay = 10;
+		var delay = 60;
 		var self = this;
 		
 		this.getCurrency(payload).then(function(data) {
-			console.log('then from rest');
-			console.log(data);
-			console.log('job run success');
 			updateOption = {$inc: {success: 1}};
 			self.recordJobResult(payload['uuid'], updateOption, delay, cb);
 		})
 		.catch(function(e) {
-			console.log('job failed');
 			updateOption = {$inc: {failed: 1}};
 			delay = 3;
 			self.recordJobResult(payload['uuid'], updateOption, delay, cb);
@@ -79,17 +74,15 @@ module.exports = function() {
 		// Mark failed count and release the job with delay
 		var jobStatus = Job.findOneAndUpdate({uuid: jobUid}, update, {new: true, upsert: true}).exec()
 		.then(function(result) {
-			console.log('db result\n');
-			console.log(result);
 			var job = result.toJSON();
 			if (job.success >= 10) {
-				console.log('success 10 times. delete the job');
+				console.log('Success 10 times. delete the job');
 				cb('success');
 			} else if (job.failed >= 3) {
-				console.log('failed 3 times. delete the job');
+				console.log('Failed 3 times. delete the job');
 				cb('bury');
 			} else {
-				console.log('delay the job');
+				console.log('Success, delay the job for %s seconds', delay);
 				cb('release', delay);
 			}
 			return job;

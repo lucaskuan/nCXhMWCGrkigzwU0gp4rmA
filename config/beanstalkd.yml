@@ -1,8 +1,8 @@
 beanstalkd:
-  host: "localhost"
+  host: "challenge.aftership.net"
   port: 11300
 handlers:
   - "./handlers/currency.js"
 watch:
-  - 'testtube'
+  - 'lucaskuan'
 ignoreDefault: true
